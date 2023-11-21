@@ -3,43 +3,76 @@ package principal;
 import java.util.ArrayList;
 import java.util.List;
 
-import dao.AlunoDAO;
-import dao.CursoDAO;
-import entities.Aluno;
-import entities.Curso;
+import dao.DespesaDAO;
+import dao.PessoaDAO;
+import dao.ReceitaDAO;
+import entities.Despesa;
+import entities.Pessoa;
+import entities.Receita;
 
+/**
+ * @author Pedro Alex
+ */
 public class Principal {
 	
 	public static void main(String[] args) {
-		CursoDAO cursoDAO = new CursoDAO();
+		ReceitaDAO receitaDAO = new ReceitaDAO();
 		
-		Curso curso1 = new Curso();
-		curso1.setTitulo("Curso 1");
+		Receita receita1 = new Receita();
+		receita1.setDescricao("Salário Empresa 1");
+		receita1.setValor(1250.0);
 		
-		Curso curso2 = new Curso();
-		curso2.setTitulo("Curso 2");
-		
-		cursoDAO.salvar(curso1);
-		cursoDAO.salvar(curso2);
-		
-		List<Curso> cursos = new ArrayList<Curso>();
-		curso1 = cursoDAO.buscarPorId(1);
-		curso2 = cursoDAO.buscarPorId(2);
-		cursos.add(curso1);
-		cursos.add(curso2);
+		receitaDAO.salvar(receita1);
 
-		AlunoDAO alunoDAO = new AlunoDAO();
+		Receita receita2 = new Receita();
+		receita2.setDescricao("Salário Empresa 2");
+		receita2.setValor(1050.98);
 		
-		Aluno aluno1 = new Aluno();
-		aluno1.setNome("João");
-		aluno1.setCursos(cursos);
-		alunoDAO.salvar(aluno1);
+		receitaDAO.salvar(receita2);
+
+		List<Receita> receitas = new ArrayList<Receita>();
+		receitas.addAll(receitaDAO.listarTodos());
+
+		DespesaDAO despesaDAO = new DespesaDAO();
 		
-		Aluno aluno2 = new Aluno();
-		aluno2.setNome("Maria");
-		aluno2.setCursos(cursos);
+		Despesa despesa1 = new Despesa();
+		despesa1.setDescricao("Energia");
+		despesa1.setValor(272.47);
 		
-		alunoDAO.salvar(aluno2);
+		Despesa despesa2 = new Despesa();
+		despesa2.setDescricao("Aluguel");
+		despesa2.setValor(408.76);
+		
+		despesaDAO.salvar(despesa1);
+		despesaDAO.salvar(despesa2);
+		
+		List<Despesa> despesas = new ArrayList<Despesa>();
+		despesas.addAll(despesaDAO.listarTodos());
+		
+		PessoaDAO pessoaDAO = new PessoaDAO();
+		
+		Pessoa pessoa = new Pessoa();
+		pessoa.setNome("Carlos");
+		pessoa.setReceitas(receitas);
+		pessoa.setDespesas(despesas);
+		
+		pessoaDAO.salvar(pessoa);
+
+		Receita receita3 = new Receita();
+		receita3.setDescricao("Salário Empresa 3");
+		receita3.setValor(2000.0);
+		
+		receitaDAO.salvar(receita3);
+		
+		receitas = new ArrayList<Receita>();
+		receitas.add(receita3);
+		
+		pessoa = new Pessoa();
+		pessoa.setNome("Maria");
+		pessoa.setReceitas(receitas);
+		pessoa.setDespesas(despesas);
+		
+		pessoaDAO.salvar(pessoa);
 		
 	}
 }

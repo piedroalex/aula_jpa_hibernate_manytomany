@@ -8,7 +8,7 @@
         
         <properties>
             <!-- Configurações da conexão com o banco de dados -->
-            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/bancodedados" />
             <property name="javax.persistence.jdbc.user" value="usuario" />
             <property name="javax.persistence.jdbc.password" value="senha" />
@@ -16,9 +16,6 @@
             <!-- Propriedades do Hibernate -->
             <property name="hibernate.hbm2ddl.auto" value="update" />
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect" />
-            <property name="hibernate.show_sql" value="true" />
-            <property name="hibernate.format_sql" value="true" />
-            <!-- Outras propriedades -->
         </properties>
     </persistence-unit>
 </persistence>
